@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: gemini-face-analysis-backend
+    env: node
+    plan: free
+    region: oregon
+
+    buildCommand: npm ci
+    startCommand: npm run start
+
+    autoDeploy: true
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false
