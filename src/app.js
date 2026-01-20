@@ -14,7 +14,7 @@ app.use(rateLimiter);
 
 // ✅ Serve uploaded images
 // This line makes files in "uploads/" accessible at /uploads/<filename>
-// app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 app.get("/", (_, res) => {
   res.send("Gemini Face Analysis API running");

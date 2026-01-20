@@ -50,12 +50,12 @@ Output JSON ONLY.
 `;
 
 export async function analyzeFaceV1(req, res) {
+  console.log(req.file,"req.file ---------------------------->v1")
   if (!req.file) {
     return res.status(400).json({ success: false, error: "No file uploaded" });
   }
 
   try {
-    console.log(req.file,"req.file ---------------------------->v1")
     const imageBase64 = req.file.buffer.toString("base64");
 
     const response = await ai.models.generateContent({
@@ -80,6 +80,7 @@ export async function analyzeFaceV1(req, res) {
         success: false,
         error: "AI returned invalid JSON",
         raw: rawText,
+        uploaded_file_url: `/uploads/${req.file.filename}`,
       });
     }
 
@@ -87,7 +88,7 @@ export async function analyzeFaceV1(req, res) {
 
   } catch (err) {
     console.error("Gemini error:", err);
-    return res.status(500).json({ success: false, error: "Analysis failed" });
+    return res.status(500).json({ success: false, error: "Analysis failed",uploaded_file_url: `/uploads/${req.file.filename}`, });
   }
 }
 

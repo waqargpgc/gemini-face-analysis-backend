@@ -1,5 +1,5 @@
 import express from "express";
-import upload from "../../middlewares/upload.memory.js";
+import upload from "../../middlewares/upload.middleware.js";
 import { analyzeFaceV1 } from "../../controllers/v1/analyzeFace.controller.js";
 
 const router = express.Router();
