@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
-
+import fs from "fs/promises"; // use promises version
 dotenv.config();
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
@@ -56,7 +56,9 @@ export async function analyzeFaceV1(req, res) {
   }
 
   try {
-    const imageBase64 = req.file.buffer.toString("base64");
+     // Multer diskStorage ensures req.file.path exists
+        const buffer = await fs.readFile(req.file.path);
+        const imageBase64 = buffer.toString("base64");
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",

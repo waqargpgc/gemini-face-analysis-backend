@@ -11,6 +11,9 @@ if (!fs.existsSync(uploadDir)) {
 // 2️⃣ Use diskStorage to save files with proper extension
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
     cb(null, uploadDir); // save in uploads/
   },
   filename: (req, file, cb) => {

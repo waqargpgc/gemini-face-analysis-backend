@@ -4,6 +4,7 @@ import path from "path";
 
 import analyzeFaceV1 from "./routes/v1/analyzeFace.route.js";
 import analyzeFaceV2 from "./routes/v2/analyzeFace.route.js";
+import analyzeFaceUnified from "./routes/v2/analyzeFaceUnified.routes.js";
 import rateLimiter from "./middlewares/rateLimiter.js";
 import uploadRoutes from "./routes/v1/uploads.route.js";
 
@@ -24,6 +25,10 @@ app.get("/", (_, res) => {
 app.use("/api/v1/uploads", uploadRoutes);
 app.use("/api/v1/analyze-face", analyzeFaceV1);
 app.use("/api/v2/analyze-face", analyzeFaceV2);
+app.use("/api/v2/analyze-face-unified", analyzeFaceUnified);
+
+// POST /api/v3/analyze-face?provider=facepp
+// POST /api/v3/analyze-face?provider=epiderm
 
 export default app;
 

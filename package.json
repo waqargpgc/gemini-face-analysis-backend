@@ -12,6 +12,7 @@
     "@google/genai": "^1.35.0",
     "@google/generative-ai": "^0.24.1",
     "@vladmandic/face-api": "^1.7.15",
+    "axios": "^1.13.2",
     "canvas": "^3.2.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
